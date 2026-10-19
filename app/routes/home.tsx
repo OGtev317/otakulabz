@@ -49,14 +49,14 @@ function AtomBackground() {
 			<div className="atom-halo" />
 			<div className="atom-system">
 				{["one", "two", "three"].map(orbit => <div key={orbit} className={`atom-plane plane-${orbit}`}><div className="atom-ring" /><div className="electron-track"><span className="electron" /></div></div>)}
-				<div className="atom-nucleus"><span /><span /><span /></div>
+				<div className="atom-nucleus"><img src="/otakulabz.png" alt="" width="2000" height="2000" fetchPriority="high" /></div>
 			</div>
 		</div>
 	);
 }
 
 function StudioArtwork() {
-	return <div className="studio-art"><div className="studio-logo"><img src="/otakulabz.png" alt="OtakuLabz orange laboratory logo" width="2000" height="2000" fetchPriority="high" /></div><p>CURIOUS BY NATURE. BUILT WITH PURPOSE.</p></div>;
+	return <div className="studio-art"><AtomBackground /><p>CURIOUS BY NATURE. BUILT WITH PURPOSE.</p></div>;
 }
 
 function ProjectCard({ project }: { project: Project }) {
@@ -99,7 +99,6 @@ export default function Home() {
 
 	return (
 		<div id="top" className="site-shell" data-motion={motionPaused ? "paused" : "playing"}>
-			<AtomBackground />
 			<a className="skip-link" href="#main">Skip to content</a>
 			<header className="site-header"><div className="container header-inner">
 				<Brand />

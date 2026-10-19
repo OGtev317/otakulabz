@@ -1,9 +1,15 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "otakulabz",
+	"account_id": "50d10c77d7a33e970f2a35df5d605a3b",
 	"main": "./workers/app.ts",
-	"compatibility_date": "2025-10-08",
+	"compatibility_date": "2026-10-01",
 	"compatibility_flags": ["nodejs_compat"],
+	"workers_dev": true,
+	"routes": [
+		{ "pattern": "otakulabz.xyz", "custom_domain": true },
+		{ "pattern": "www.otakulabz.xyz", "custom_domain": true }
+	],
 	"observability": {
 		"enabled": true
 	},

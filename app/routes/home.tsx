@@ -12,7 +12,9 @@ export function meta({}: Route.MetaArgs) {
 		{ property: "og:description", content: description },
 		{ property: "og:type", content: "website" },
 		{ property: "og:url", content: "https://otakulabz.xyz/" },
-		{ name: "theme-color", content: "#101213" },
+		{ property: "og:image", content: "https://otakulabz.xyz/otakulabz.png" },
+		{ property: "og:image:alt", content: "The OtakuLabz orange laboratory logo" },
+		{ name: "theme-color", content: "#0b1017" },
 	];
 }
 
@@ -27,7 +29,7 @@ function Arrow({ diagonal = false }: { diagonal?: boolean }) {
 function Brand() {
 	return (
 		<a className="brand" href="#top" aria-label="OtakuLabz home">
-			<svg className="brand-mark" aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="m11 7-8 9 8 9M21 7l8 9-8 9m-3-18-4 18" stroke="currentColor" strokeWidth="2" /></svg>
+			<span className="brand-mark"><img src="/otakulabz.png" alt="" width="2000" height="2000" /></span>
 			<span>otaku<span className="brand-light">labz</span><span className="brand-period">.</span></span>
 		</a>
 	);
@@ -41,19 +43,20 @@ function CategoryIcon({ category }: { category: Category }) {
 	);
 }
 
-function StudioArtwork() {
+function AtomBackground() {
 	return (
-		<div className="studio-art" aria-hidden="true">
-			<div className="art-meta"><span>OTAKULABZ / STUDIO</span><span>↗</span></div>
-			<div className="art-grid">
-				<div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit orbit-three" />
-				<div className="art-core"><span>o<span>l</span></span><i /></div>
-				<span className="art-node node-one" /><span className="art-node node-two" /><span className="art-node node-three" />
-				<span className="art-coordinate coordinate-one">IDEA</span><span className="art-coordinate coordinate-two">ITERATE</span><span className="art-coordinate coordinate-three">BUILD</span>
+		<div className="atom-background" aria-hidden="true">
+			<div className="atom-halo" />
+			<div className="atom-system">
+				{["one", "two", "three"].map(orbit => <div key={orbit} className={`atom-plane plane-${orbit}`}><div className="atom-ring" /><div className="electron-track"><span className="electron" /></div></div>)}
+				<div className="atom-nucleus"><span /><span /><span /></div>
 			</div>
-			<div className="art-caption"><span>+</span><span>A SPACE FOR WHAT’S NEXT</span><span>+</span></div>
 		</div>
 	);
+}
+
+function StudioArtwork() {
+	return <div className="studio-art"><div className="studio-logo"><img src="/otakulabz.png" alt="OtakuLabz orange laboratory logo" width="2000" height="2000" fetchPriority="high" /></div><p>CURIOUS BY NATURE. BUILT WITH PURPOSE.</p></div>;
 }
 
 function ProjectCard({ project }: { project: Project }) {
@@ -78,6 +81,7 @@ const navigation = [
 
 export default function Home() {
 	const [menuOpen, setMenuOpen] = useState(false);
+	const [motionPaused, setMotionPaused] = useState(false);
 	const menuButton = useRef<HTMLButtonElement>(null);
 	const featured = projects.filter(project => project.featured).slice(0, 3);
 	const products = projects.filter(project => project.category === "product");
@@ -94,7 +98,8 @@ export default function Home() {
 	}, [menuOpen]);
 
 	return (
-		<div id="top" className="site-shell">
+		<div id="top" className="site-shell" data-motion={motionPaused ? "paused" : "playing"}>
+			<AtomBackground />
 			<a className="skip-link" href="#main">Skip to content</a>
 			<header className="site-header"><div className="container header-inner">
 				<Brand />
@@ -114,6 +119,7 @@ export default function Home() {
 						<div className="hero-actions"><a className="button button-primary" href="#products">Explore the studio<Arrow /></a><a className="text-link" href="https://github.com/OGtev317" target="_blank" rel="noopener noreferrer">Find me on GitHub<Arrow diagonal /></a></div>
 					</div><StudioArtwork />
 				</section>
+				<div className="container motion-control"><button type="button" aria-pressed={motionPaused} onClick={() => setMotionPaused(!motionPaused)}>{motionPaused ? "Resume" : "Pause"} background animation<span aria-hidden="true">{motionPaused ? "▷" : "Ⅱ"}</span></button><span className="reduced-motion-note">Motion reduced to match your device settings.</span></div>
 				<div className="container studio-strip"><span>SMALL STUDIO. OPEN POSSIBILITIES.</span><div><span>Build with intention</span><i /><span>Share what’s useful</span><i /><span>Stay curious</span></div></div>
 
 				{featured.length > 0 && <section className="container featured-section" aria-labelledby="featured-title"><p className="eyebrow">SELECTED WORK</p><h2 id="featured-title">A few worth exploring.</h2><div className="project-grid">{featured.map(project => <ProjectCard key={project.id} project={project} />)}</div></section>}

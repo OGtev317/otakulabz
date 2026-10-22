@@ -133,8 +133,17 @@ h2 { font-size: clamp(30px, 3vw, 39px); font-weight: 450; line-height: 1.18; let
 .project-topline { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
 .project-topline h3 { font-size: 20px; }
 .status-label { font: 9px var(--mono); color: var(--accent); border: 1px solid #345474; padding: 6px 8px; border-radius: 20px; }
-.project-card > p { color: var(--muted); font-size: 13px; line-height: 1.8; margin-top: 17px; }
+.project-body { min-width: 0; }
+.project-body > p { color: var(--muted); font-size: 13px; line-height: 1.8; margin-top: 17px; }
 .project-card .project-audience { font-size: 11px; }
+.project-why strong { display: block; margin-bottom: 4px; color: var(--text); font: 9px/1.5 var(--mono); letter-spacing: 1.4px; text-transform: uppercase; }
+/* Logo cards sit side by side with their text when the card is wide enough. */
+.project-card.has-logo { container-type: inline-size; }
+.project-logo { display: block; width: 112px; height: auto; aspect-ratio: 1; border-radius: 24%; margin-bottom: 22px; }
+@container (min-width: 560px) {
+	.has-logo .project-layout { display: grid; grid-template-columns: 168px 1fr; gap: 32px; align-items: start; }
+	.project-card.has-logo .project-logo { width: 100%; margin-bottom: 0; }
+}
 .project-links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 20px; }
 .project-links a { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; padding-block: 10px; color: var(--accent); }
 .project-card .project-updated { border-top: 1px solid var(--line); padding-top: 15px; font-size: 10px; }

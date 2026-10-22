@@ -61,13 +61,18 @@ function StudioArtwork() {
 
 function ProjectCard({ project }: { project: Project }) {
 	return (
-		<article className="project-card">
+		<article className={`project-card${project.logo ? " has-logo" : ""}`}>
 			{project.screenshot && <img className="project-screenshot" src={project.screenshot.src} alt={project.screenshot.alt} loading="lazy" width="960" height="600" />}
-			<div className="project-topline"><h3>{project.name}</h3><span className="status-label">{project.status}</span></div>
-			<p>{project.summary}</p><p className="project-audience">For {project.audience}</p>
-			{project.installation && <pre className="installation"><code>{project.installation}</code></pre>}
-			<div className="project-links">{project.links.map(link => <a href={link.href} key={link.href} target="_blank" rel="noopener noreferrer">{link.label}<Arrow diagonal /></a>)}</div>
-			<p className="project-updated">Updated <time dateTime={project.updatedAt}>{new Date(project.updatedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</time></p>
+			<div className="project-layout">
+				{project.logo && <img className="project-logo" src={project.logo.src} alt={project.logo.alt} loading="lazy" width="512" height="512" />}
+				<div className="project-body">
+					<div className="project-topline"><h3>{project.name}</h3><span className="status-label">{project.status}</span></div>
+					<p>{project.summary}</p>{project.why && <p className="project-why"><strong>Why it exists</strong>{project.why}</p>}<p className="project-audience">For {project.audience}</p>
+					{project.installation && <pre className="installation"><code>{project.installation}</code></pre>}
+					<div className="project-links">{project.links.map(link => <a href={link.href} key={link.href} target="_blank" rel="noopener noreferrer">{link.label}<Arrow diagonal /></a>)}</div>
+					<p className="project-updated">Updated <time dateTime={project.updatedAt}>{new Date(project.updatedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</time></p>
+				</div>
+			</div>
 		</article>
 	);
 }

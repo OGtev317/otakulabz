@@ -23,7 +23,7 @@ export const projects: Project[] = [
 		name: "BaseCash",
 		category: "product",
 		status: "Beta",
-		summary: "A private payments app on the Base Sepolia testnet. Shield test tokens (tUSDC and tBCS) into a shielded pool, send them to someone as a private payment, and unshield back to a regular wallet. Zero-knowledge proofs are made right in your browser, so your private note details stay on your device.",
+		summary: "Experimental shielded payments on Base Sepolia. Shield tUSDC or tBCS, send an encrypted payment for a recipient to claim, or unshield back to a regular wallet. Zero-knowledge proofs are generated in your browser; fee-paying wallet addresses and timing remain public.",
 		why: "On public blockchains, anyone can see who paid whom and how much. BaseCash was built to make private payments on Base simple enough for everyday people, and it is being tested in the open with free test tokens before any real money is involved.",
 		audience: "anyone curious about private payments on Base. Testnet only: free test tokens, no real funds, not audited",
 		updatedAt: "2026-10-21",

@@ -78,7 +78,7 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 const navigation = [
-	{ href: "#products", label: "Products" },
+	{ href: "#products", label: "Projects" },
 	{ href: "#tools", label: "Developer Tools" },
 	{ href: "#lab", label: "The Lab" },
 	{ href: "#about", label: "About" },
@@ -129,7 +129,7 @@ export default function Home() {
 				{featured.length > 0 && <section className="container featured-section" aria-labelledby="featured-title"><p className="eyebrow">SELECTED WORK</p><h2 id="featured-title">A few worth exploring.</h2><div className="project-grid">{featured.map(project => <ProjectCard key={project.id} project={project} />)}</div></section>}
 
 				<section id="products" className="container products-section" aria-labelledby="products-title">
-					<div className="section-heading"><div><p className="eyebrow"><span>01 /</span> PRODUCTS</p><h2 id="products-title">Software, made useful.</h2></div><p>Applications for real problems.<br />Built for the people on the other side of the screen.</p></div>
+					<div className="section-heading"><div><p className="eyebrow"><span>01 /</span> PROJECTS</p><h2 id="products-title">Built with purpose.</h2></div><p>Explore our communities, collections, and applications.<br />Discover what each project is here to do.</p></div>
 					{products.length ? <div className="project-grid">{products.map(project => <ProjectCard project={project} key={project.id} />)}</div> : <div className="product-empty"><div className="empty-emblem"><CategoryIcon category="product" /></div><div><span className="empty-label">THE COLLECTION STARTS HERE</span><h3>Good things take a little building.</h3><p>Products will appear here when they’re ready to explore.</p></div><span className="empty-tag">No products listed yet</span></div>}
 				</section>
 

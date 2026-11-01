@@ -1,5 +1,22 @@
 # Welcome to React Router + Cloudflare Workers!
 
+## OtakuLabz site structure
+
+- `/`: studio introduction and compact project previews.
+- `/projects`: complete project cards and external app links.
+- `/dev-tools`: published developer tools; public GitHub repository link when empty.
+- `/lab`: explicitly labeled experiments and research; no invented entries.
+- Shared navigation, footer, and contact section: `app/components/site.tsx`.
+- Contact URLs: `app/data/contact.ts`. GitHub and the owner's confirmed Discord
+  invite are configured in one place for every page.
+- Project metadata: `app/data/projects.ts`. Publish only deliberate public links;
+  do not enumerate authenticated/private GitHub repositories into the site.
+
+2026-11-01: page split prepared on `codex/site-pages-and-contact`. Typecheck,
+production build, dry run and local HTTP checks of all four routes pass. Projects
+page visually inspected in Chrome. TevDevx supplied the Discord invite and
+approved publishing the page split and contact links.
+
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/react-router-starter-template)
 
 ![React Router Starter Template Preview](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/bfdc2f85-e5c9-4c92-128b-3a6711249800/public)

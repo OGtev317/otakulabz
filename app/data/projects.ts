@@ -42,20 +42,4 @@ export const projects: Project[] = [
 		screenshot: { src: "/projects/otakuskin.jpg", alt: "Cherry blossom photography from the OtakuSkin collection preview" },
 		links: [{ label: "Explore OtakuSkin", href: "https://otakuskin.com/" }],
 	},
-	{
-		id: "basecash",
-		name: "BaseCash",
-		category: "product",
-		status: "Beta",
-		summary: "Experimental shielded payments on Base Sepolia. Shield tUSDC or tBCS, send an encrypted payment for a recipient to claim, or unshield back to a regular wallet. Zero-knowledge proofs are generated in your browser; fee-paying wallet addresses and timing remain public.",
-		why: "On public blockchains, anyone can see who paid whom and how much. BaseCash was built to make private payments on Base simple enough for everyday people, and it is being tested in the open with free test tokens before any real money is involved.",
-		audience: "anyone curious about private payments on Base. Testnet only: free test tokens, no real funds, not audited",
-		updatedAt: "2026-10-21",
-		logo: { src: "/projects/basecash.png", alt: "BaseCash logo" },
-		links: [
-			{ label: "Try it", href: "https://basecash.io/" },
-			{ label: "Documentation", href: "https://basecash.io/how-it-works" },
-			{ label: "Source", href: "https://basecash.io/licenses" },
-		],
-	},
 ];

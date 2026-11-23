@@ -1,31 +1,77 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router";
-import type { Project, Category } from "../data/projects";
 import { contact } from "../data/contact";
+import { profile } from "../data/profile";
+import type { Project } from "../data/projects";
+
+const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
-  const button = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    if (!open) return;
-    const close = (event: KeyboardEvent) => { if (event.key === "Escape") { setOpen(false); button.current?.focus(); } };
-    document.addEventListener("keydown", close);
-    return () => document.removeEventListener("keydown", close);
-  }, [open]);
-  return <header className="site-header"><div className="container header-inner"><Brand />
-    <button ref={button} className="menu-toggle" aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>{open ? "Close" : "Menu"}<span aria-hidden="true">{open ? "−" : "+"}</span></button>
-    <nav id="primary-navigation" aria-label="Main navigation" className={`primary-navigation${open ? " is-open" : ""}`}>
-      {[{ href: "/projects", label: "Projects" }, { href: "/dev-tools", label: "Developer Tools" }, { href: "/lab", label: "The Lab" }].map(link => <NavLink key={link.href} to={link.href} onClick={() => setOpen(false)}>{link.label}</NavLink>)}
-      <a href="/#about" onClick={() => setOpen(false)}>About</a><a className="contact-link" href="#contact" onClick={() => setOpen(false)}>Get in touch<Arrow diagonal /></a>
-    </nav></div></header>;
+	const [open, setOpen] = useState(false);
+	const button = useRef<HTMLButtonElement>(null);
+	useEffect(() => {
+		if (!open) return;
+		const close = (event: KeyboardEvent) => {
+			if (event.key === "Escape") {
+				setOpen(false);
+				button.current?.focus();
+			}
+		};
+		document.addEventListener("keydown", close);
+		return () => document.removeEventListener("keydown", close);
+	}, [open]);
+	const closeMenu = () => setOpen(false);
+	return (
+		<header className="site-header">
+			<div className="container header-inner">
+				<Brand />
+				<button ref={button} className="menu-toggle" aria-expanded={open} aria-controls="primary-navigation" onClick={() => setOpen(!open)}>
+					{open ? "Close" : "Menu"}<span aria-hidden="true">{open ? "−" : "+"}</span>
+				</button>
+				<nav id="primary-navigation" aria-label="Main navigation" className={`primary-navigation${open ? " is-open" : ""}`}>
+					<NavLink to="/projects" onClick={closeMenu}>Work</NavLink>
+					<a href="/#skills" onClick={closeMenu}>Skills</a>
+					<a href="/#about" onClick={closeMenu}>About</a>
+					{contact.resume && <a href={contact.resume} download onClick={closeMenu}>Résumé</a>}
+					<a className="contact-link" href="#contact" onClick={closeMenu}>Get in touch<Arrow /></a>
+				</nav>
+			</div>
+		</header>
+	);
 }
 
 export function ContactSection() {
-  return <section id="contact" className="container contact-section" aria-labelledby="contact-title"><div><p className="eyebrow">LET’S CONNECT</p><h2 id="contact-title">Meet the builder. Explore the work.</h2><p>Browse my public repositories on GitHub, or connect on Discord for a conversation.</p></div><div className="contact-actions"><a className="button button-primary" href={contact.github} target="_blank" rel="noopener noreferrer">GitHub profile<Arrow diagonal /></a><a className="text-link" href={contact.repositories} target="_blank" rel="noopener noreferrer">Browse public repositories<Arrow diagonal /></a>{contact.discord ? <a className="button button-outline" href={contact.discord} target="_blank" rel="noopener noreferrer">Connect on Discord<Arrow diagonal /></a> : <span className="contact-pending">Discord link coming soon</span>}</div></section>;
+	return (
+		<section id="contact" className="container contact-section" aria-labelledby="contact-title">
+			<div>
+				<p className="eyebrow">GET IN TOUCH</p>
+				<h2 id="contact-title">Let’s build something useful.</h2>
+				<p>I’m open to full-time roles, founding teams, and freelance or contract projects.</p>
+			</div>
+			<div className="contact-actions">
+				{contact.email && <a className="button button-primary" href={`mailto:${contact.email}`}>Email me<Arrow /></a>}
+				{contact.resume && <a className="button button-outline" href={contact.resume} download>Download résumé<Arrow /></a>}
+				<a className={`button ${contact.email ? "button-outline" : "button-primary"}`} href={contact.github} {...external}>GitHub<Arrow diagonal /></a>
+				<a className="button button-outline" href={contact.discord} {...external}>Discord<Arrow diagonal /></a>
+			</div>
+		</section>
+	);
 }
 
 export function SiteFooter() {
-  return <footer className="container site-footer"><Brand /><div className="footer-navigation"><a href="/projects">Projects</a><a href="/dev-tools">Developer Tools</a><a href="/lab">The Lab</a><a href={contact.github} target="_blank" rel="noopener noreferrer">GitHub ↗</a>{contact.discord && <a href={contact.discord} target="_blank" rel="noopener noreferrer">Discord ↗</a>}</div><a href="#top">Back to top<span aria-hidden="true">↑</span></a></footer>;
+	return (
+		<footer className="container site-footer">
+			<Brand />
+			<div className="footer-navigation">
+				<a href="/projects">Work</a>
+				<a href="/#skills">Skills</a>
+				<a href="/#about">About</a>
+				<a href={contact.github} {...external}>GitHub ↗</a>
+				<a href={contact.discord} {...external}>Discord ↗</a>
+			</div>
+			<a href="#top">Back to top<span aria-hidden="true">↑</span></a>
+		</footer>
+	);
 }
 
 export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
@@ -34,34 +80,36 @@ export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
 
 export function Brand() {
 	return (
-		<a className="brand" href="/" aria-label="OtakuLabz home">
+		<a className="brand" href="/" aria-label={`${profile.name}, OtakuLabz home`}>
 			<span className="brand-mark"><img src="/otakulabz.png" alt="" width="2000" height="2000" /></span>
-			<span>otaku<span className="brand-light">labz</span><span className="brand-period">.</span></span>
+			<span className="brand-text"><strong>{profile.name}</strong><small>otakulabz<i>.</i></small></span>
 		</a>
 	);
 }
 
-export function CategoryIcon({ category }: { category: Category }) {
+function ProjectMedia({ project }: { project: Project }) {
+	if (project.image) return <img className="project-media" src={project.image.src} alt={project.image.alt} loading="lazy" width="1280" height="800" />;
+	if (project.logo) return <div className="project-media media-logo"><img src={project.logo.src} alt={project.logo.alt} loading="lazy" width="512" height="512" /></div>;
 	return (
-		<svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" strokeLinecap="round">
-			{category === "product" ? <path d="m16 3 12 7v13l-12 7-12-7V10zM4 10l12 7 12-7M16 17v13M10 6l12 7" /> : category === "tool" ? <><rect x="3" y="5" width="26" height="22" rx="3" /><path d="m9 12 4 4-4 4m8 0h6" /></> : <><path d="M11 3h10M13 3v9L5 25a3 3 0 0 0 3 4h16a3 3 0 0 0 3-4l-8-13V3M9 19h14" /><circle cx="15" cy="24" r="1" /></>}
-		</svg>
+		<div className="project-media media-flow">
+			<ol aria-label={`${project.name} workflow`}>{project.flow?.map(step => <li key={step}>{step}</li>)}</ol>
+		</div>
 	);
 }
 
-export function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
+export function ProjectCard({ project, detailed = false }: { project: Project; detailed?: boolean }) {
 	return (
-		<article className={`project-card${project.logo ? " has-logo" : ""}`}>
-			{project.screenshot && <img className="project-screenshot" src={project.screenshot.src} alt={project.screenshot.alt} loading="lazy" width="960" height="600" />}
-			<div className="project-layout">
-				{project.logo && <img className="project-logo" src={project.logo.src} alt={project.logo.alt} loading="lazy" width="512" height="512" />}
-				<div className="project-body">
-					<div className="project-topline"><h3>{project.name}</h3><span className="status-label">{project.status}</span></div>
-					<p>{project.summary}</p>{!compact && project.why && <p className="project-why"><strong>Why it exists</strong>{project.why}</p>}{!compact && <p className="project-audience">For {project.audience}</p>}
-					{project.installation && <pre className="installation"><code>{project.installation}</code></pre>}
-					<div className="project-links">{project.links.map(link => <a href={link.href} key={link.href} target="_blank" rel="noopener noreferrer">{link.label}<Arrow diagonal /></a>)}</div>
-					<p className="project-updated">Updated <time dateTime={project.updatedAt}>{new Date(project.updatedAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}</time></p>
-				</div>
+		<article className="project-card">
+			<ProjectMedia project={project} />
+			<div className="project-body">
+				<div className="project-topline"><h3>{project.name}</h3><span className="status-label">{project.status}</span></div>
+				<p className="project-tagline">{project.tagline}</p>
+				<p className="project-summary">{project.summary}</p>
+				{detailed && <div className="project-built"><h4>What I built</h4><ul>{project.built.map(item => <li key={item}>{item}</li>)}</ul></div>}
+				<p className="project-shows"><strong>Shows</strong> {project.shows.join(" · ")}</p>
+				<ul className="stack-list" aria-label={`${project.name} technologies`}>{project.stack.map(item => <li key={item}>{item}</li>)}</ul>
+				{project.note && <p className="project-note">{project.note}</p>}
+				{project.links.length > 0 && <div className="project-links">{project.links.map(link => <a href={link.href} key={link.href} {...external}>{link.label}<Arrow diagonal /></a>)}</div>}
 			</div>
 		</article>
 	);

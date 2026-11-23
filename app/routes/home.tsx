@@ -59,7 +59,7 @@ export default function Home() {
 				<div className="container motion-control">
 					<button type="button" aria-pressed={motionPaused} onClick={() => setMotionPaused(!motionPaused)}>{motionPaused ? "Resume" : "Pause"} animation<span aria-hidden="true">{motionPaused ? "▷" : "Ⅱ"}</span></button>
 				</div>
-				<dl className="container stats-strip">{stats.map(stat => <div key={stat.label}><dd>{stat.value}</dd><dt>{stat.label}</dt></div>)}</dl>
+				<ul className="container stats-strip">{stats.map(stat => <li key={stat.label}><strong>{stat.value}</strong><span>{stat.label}</span></li>)}</ul>
 
 				<section id="work" className="container page-section" aria-labelledby="work-title">
 					<div className="section-heading">

@@ -79,9 +79,10 @@ export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
 
 export function Brand() {
 	return (
-		<a className="brand" href="/" aria-label={`${profile.name}, OtakuLabz home`}>
+		<a className="brand" href="/">
 			<span className="brand-mark"><img src="/otakulabz.png" alt="" width="2000" height="2000" /></span>
 			<span className="brand-text"><strong>{profile.name}</strong><small>otakulabz<i>.</i></small></span>
+			<span className="sr-only"> home</span>
 		</a>
 	);
 }

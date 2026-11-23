@@ -32,7 +32,7 @@ export function SiteHeader() {
 					<NavLink to="/projects" onClick={closeMenu}>Work</NavLink>
 					<a href="/#skills" onClick={closeMenu}>Skills</a>
 					<a href="/#about" onClick={closeMenu}>About</a>
-					{contact.resume && <a href={contact.resume} download onClick={closeMenu}>Résumé</a>}
+					<NavLink to="/resume" onClick={closeMenu}>Résumé</NavLink>
 					<a className="contact-link" href="#contact" onClick={closeMenu}>Get in touch<Arrow /></a>
 				</nav>
 			</div>
@@ -50,7 +50,6 @@ export function ContactSection() {
 			</div>
 			<div className="contact-actions">
 				{contact.email && <a className="button button-primary" href={`mailto:${contact.email}`}>Email me<Arrow /></a>}
-				{contact.resume && <a className="button button-outline" href={contact.resume} download>Download résumé<Arrow /></a>}
 				<a className={`button ${contact.email ? "button-outline" : "button-primary"}`} href={contact.github} {...external}>GitHub<Arrow diagonal /></a>
 				<a className="button button-outline" href={contact.discord} {...external}>Discord<Arrow diagonal /></a>
 			</div>

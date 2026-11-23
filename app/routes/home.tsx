@@ -50,7 +50,6 @@ export default function Home() {
 						<p className="hero-description">{profile.summary}</p>
 						<div className="hero-actions">
 							<a className="button button-primary" href="/projects">View my work<Arrow /></a>
-							{contact.resume && <a className="button button-outline" href={contact.resume} download>Download résumé<Arrow /></a>}
 							{contact.email && <a className="text-link" href={`mailto:${contact.email}`}>Email me<Arrow /></a>}
 							<a className="text-link" href={contact.github} target="_blank" rel="noopener noreferrer">GitHub<Arrow diagonal /></a>
 						</div>

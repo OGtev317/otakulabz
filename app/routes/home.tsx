@@ -71,7 +71,7 @@ export default function Home() {
 				</section>
 
 				<section id="skills" className="container page-section" aria-labelledby="skills-title">
-					<div className="section-heading"><div><p className="eyebrow"><span>02 /</span> SKILLS</p><h2 id="skills-title">What I work with.</h2></div><p>Each group lists projects where you can see those skills in use.</p></div>
+					<div className="section-heading"><div><p className="eyebrow"><span>02 /</span> SKILLS</p><h2 id="skills-title">What I work with.</h2></div><p>Each group lists where you can see those skills in use.</p></div>
 					<div className="skills-grid">
 						{skills.map(skill => <article className="skill-card" key={skill.group}><h3>{skill.group}</h3><ul className="stack-list">{skill.items.map(item => <li key={item}>{item}</li>)}</ul><p><strong>Used in</strong> {skill.proof}</p></article>)}
 					</div>
@@ -82,6 +82,7 @@ export default function Home() {
 					<div className="about-copy">
 						<p>OtakuLabz is my independent studio, where I turn ideas into working software.</p>
 						<p>I like owning a product end to end: shaping the experience, designing the data model, testing the risky parts, and getting it in front of real people.</p>
+						<p>I’m studying computer science at Indiana University, with graduation expected in 2029. I also work as a fiber optic technician, diagnosing connection problems and explaining technical issues to customers.</p>
 						<ul className="principles">{principles.map(item => <li key={item.title}><h3>{item.title}</h3><p>{item.text}</p></li>)}</ul>
 					</div>
 				</section>

@@ -27,7 +27,7 @@ export const skills = [
 	{ group: "Frontend", items: ["TypeScript", "React", "Next.js", "React Router", "Vite", "Tailwind CSS"], proof: "Zatrix, OtakuSpace, SquishyLab" },
 	{ group: "Backend & data", items: ["Node.js", "Fastify", "PostgreSQL", "Supabase", "Row-level security", "Zod"], proof: "OtakuSpace, Roots, Service Booking" },
 	{ group: "Blockchain & ZK", items: ["Solidity", "Circom", "Groth16", "Cairo", "Starknet", "EVM / Base"], proof: "Basecoin, LumenLenz, Gigstark" },
-	{ group: "Mobile & systems", items: ["SwiftUI", "Rust", "WebAssembly", "Electron"], proof: "Zatrix, LumenLenz, Basecoin" },
+	{ group: "Languages & systems", items: ["Java", "Rust", "SwiftUI", "WebAssembly", "Electron"], proof: "IU coursework, Zatrix, LumenLenz" },
 	{ group: "Cloud & commerce", items: ["Cloudflare Workers", "Vercel", "GitHub Actions", "Stripe", "Shopify", "Resend"], proof: "Service Booking, SquishyLab, Roots" },
 	{ group: "Testing & quality", items: ["Vitest", "Playwright", "Foundry", "Database isolation tests"], proof: "Roots, OtakuSpace, Basecoin" },
 ];

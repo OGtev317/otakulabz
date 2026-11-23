@@ -10,6 +10,7 @@ export interface Project {
 	built: string[];
 	stack: string[];
 	shows: string[];
+	breakdown: { label: string; steps: string[] };
 	featured?: boolean;
 	image?: { src: string; alt: string };
 	logo?: { src: string; alt: string };
@@ -41,6 +42,7 @@ export const projects: Project[] = [
 		],
 		stack: ["Next.js", "TypeScript", "SwiftUI", "Supabase", "GitHub Actions"],
 		shows: ["Frontend", "Backend", "Database", "Mobile"],
+		breakdown: { label: "How it's built", steps: ["Next.js + SwiftUI", "Device storage", "PDF & CSV export"] },
 		image: { src: "/projects/zatrix.jpg", alt: "Zatrix invoicing dashboard with outstanding, paid, and draft totals" },
 		links: [{ label: "Open Zatrix", href: "https://zatrix.xyz" }],
 	},
@@ -59,6 +61,7 @@ export const projects: Project[] = [
 		],
 		stack: ["JavaScript", "Vite", "Supabase", "PostgreSQL", "Resend", "Vitest"],
 		shows: ["Frontend", "Backend", "Database"],
+		breakdown: { label: "How it's built", steps: ["Web app", "Supabase Auth", "PostgreSQL RLS"] },
 		image: { src: "/projects/roots.jpg", alt: "Roots welcome page with a glowing family tree and sign-in form" },
 		links: [{ label: "Try the demo", href: "https://otfroots.com/demo.html" }, { label: "Source", href: "https://github.com/OGtev317/OTF" }],
 	},
@@ -77,6 +80,7 @@ export const projects: Project[] = [
 		],
 		stack: ["Next.js", "TypeScript", "Fastify", "PostgreSQL", "Supabase", "Playwright"],
 		shows: ["Frontend", "Backend", "Database"],
+		breakdown: { label: "How it's built", steps: ["Next.js UI", "Fastify API", "PostgreSQL"] },
 		logo: { src: "/projects/otakuspace.png", alt: "OtakuSpace beta logo" },
 		links: [{ label: "Visit OtakuSpace", href: "https://space.otakulabz.xyz/home" }],
 	},
@@ -95,6 +99,7 @@ export const projects: Project[] = [
 		],
 		stack: ["TypeScript", "Rust", "WebAssembly", "snarkjs", "arkworks", "Ethereum", "Stellar"],
 		shows: ["Frontend", "Developer tools", "Rust/WebAssembly"],
+		breakdown: { label: "How it works", steps: ["Load or look up", "Check supported proof", "Report result"] },
 		image: { src: "/projects/lumenlenz.jpg", alt: "LumenLenz page with a field for checking a transaction" },
 		note: "Experimental and unaudited.",
 		links: [{ label: "Try LumenLenz", href: "https://akashi.zatrix.xyz/" }, { label: "Source", href: "https://github.com/OGtev317/ZK-Proofscan" }],
@@ -113,6 +118,7 @@ export const projects: Project[] = [
 		],
 		stack: ["Solidity", "Circom", "Groth16", "Rust", "Foundry", "Electron"],
 		shows: ["Smart contracts", "Zero-knowledge circuits"],
+		breakdown: { label: "How it's built", steps: ["Circom circuits", "Groth16 proofs", "Solidity contracts"] },
 		flow: ["Shield", "Pay privately", "Withdraw"],
 		note: "Test tokens with no value. Unaudited, private source. Independent project, not affiliated with Base or Coinbase.",
 		links: [],
@@ -131,6 +137,7 @@ export const projects: Project[] = [
 		],
 		stack: ["TypeScript", "Cairo", "Starknet.js", "Cloudflare Pages"],
 		shows: ["Frontend", "Wallet integration"],
+		breakdown: { label: "Payment flow", steps: ["Connect wallet", "Shield STRK", "Pay privately", "Withdraw"] },
 		image: { src: "/projects/gigstark.jpg", alt: "Gigstark landing page reading Pay for the work. Hide the relationship." },
 		note: "Built for the STRK20 Private Sprint. Internally reviewed, not independently audited.",
 		links: [{ label: "View Gigstark", href: "https://gigstark.pages.dev" }, { label: "Source", href: "https://github.com/OGtev317/Gigstark" }],
@@ -149,6 +156,7 @@ export const projects: Project[] = [
 		],
 		stack: ["JavaScript", "Node.js", "Supabase", "PostgreSQL", "Stripe", "Vercel"],
 		shows: ["Frontend", "Backend", "Database", "Payments"],
+		breakdown: { label: "How it's built", steps: ["Booking form", "Node.js API", "Supabase + Stripe test mode"] },
 		flow: ["Book", "Test deposit", "Dispatch"],
 		note: "Client demo in Stripe test mode. Private source and link.",
 		links: [],
@@ -167,6 +175,7 @@ export const projects: Project[] = [
 		],
 		stack: ["React", "TypeScript", "Tailwind CSS", "Shopify", "Cloudflare Workers"],
 		shows: ["Frontend", "Commerce API", "Edge hosting"],
+		breakdown: { label: "How it's built", steps: ["React storefront", "Shopify catalog", "Shopify checkout"] },
 		image: { src: "/projects/squishylab.jpg", alt: "SquishyLab storefront with a purple cat squishy in a glass dome" },
 		links: [{ label: "Visit SquishyLab", href: "https://squishylab.toys" }],
 	},
@@ -184,6 +193,7 @@ export const projects: Project[] = [
 		],
 		stack: ["TypeScript", "Cloudflare Workers", "Vitest"],
 		shows: ["Frontend", "Edge hosting"],
+		breakdown: { label: "Preview status", steps: ["Explore collection", "Read product details", "Checkout not open"] },
 		image: { src: "/projects/otakuskin-site.jpg", alt: "OtakuSkin storefront with skincare bottles and cherry blossoms" },
 		links: [{ label: "Explore OtakuSkin", href: "https://otakuskin.com/" }],
 	},

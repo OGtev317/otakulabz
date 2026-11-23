@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { NavLink } from "react-router";
 import { contact } from "../data/contact";
 import { profile } from "../data/profile";
@@ -87,6 +87,17 @@ export function Brand() {
 	);
 }
 
+function ProjectBreakdown({ project }: { project: Project }) {
+	const labelId = useId();
+	const { label, steps } = project.breakdown;
+	return (
+		<div className="project-breakdown">
+			<h4 id={labelId}>{label}</h4>
+			<ol aria-labelledby={labelId}>{steps.map((step, index) => <li key={step}><span aria-hidden="true">{index + 1}</span>{step}</li>)}</ol>
+		</div>
+	);
+}
+
 function ProjectMedia({ project }: { project: Project }) {
 	if (project.image) return <img className="project-media" src={project.image.src} alt={project.image.alt} loading="lazy" width="1280" height="800" />;
 	if (project.logo) return <div className="project-media media-logo"><img src={project.logo.src} alt={project.logo.alt} loading="lazy" width="512" height="512" /></div>;
@@ -105,6 +116,7 @@ export function ProjectCard({ project, detailed = false }: { project: Project; d
 				<div className="project-topline"><h3>{project.name}</h3><span className="status-label">{project.status}</span></div>
 				<p className="project-tagline">{project.tagline}</p>
 				<p className="project-summary">{project.summary}</p>
+				<ProjectBreakdown project={project} />
 				{detailed && <div className="project-built"><h4>What I built</h4><ul>{project.built.map(item => <li key={item}>{item}</li>)}</ul></div>}
 				<p className="project-shows"><strong>Shows</strong> {project.shows.join(" · ")}</p>
 				<ul className="stack-list" aria-label={`${project.name} technologies`}>{project.stack.map(item => <li key={item}>{item}</li>)}</ul>
